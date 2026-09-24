@@ -40,7 +40,7 @@ export const projects: Project[] = [
     liveUrl: "#",
     githubUrl: "#",
     features: ["Product-first layout", "Responsive storefront", "Clear promotional hierarchy", "Reusable product cards"],
-    gallery: ["/projects/gomla.png", "/projects/gomla.png", "/projects/gomla.png", "/projects/gomla.png", "/projects/gomla.png"],
+    gallery: ["/projects/gomla.png", "/projects/docstudy.png", "/projects/sharyan.png", "/projects/zad.png", "/projects/khatmatuk.png","/projects/gomla.png", "/projects/docstudy.png", "/projects/sharyan.png", "/projects/zad.png", "/projects/khatmatuk.png"],
   },
   {
     slug: "khatmatuk",

@@ -6,14 +6,13 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className=" relative min-h-[calc(100dvh-80px)] lg:h-[calc(100dvh-80px)] lg:min-h-0 bg-[#FAF9F1] 
+      className=" relative min-h-[calc(100dvh-80px)] lg:h-[calc(100dvh-100px)] lg:min-h-0 bg-[#FAF9F1] 
       overflow-y-hidden border-none outline-none flex flex-col justify-between"
     >
       {/* المربع الشفاف المائل الديكوري (يظهر في الشاشات المتوسطة والكبيرة فقط) */}
       <div className="absolute -bottom-6 left-6 w-16 h-16 border-2 border-[#D94A50]/30 bg-[#F4EEEC]/40 rotate-[-15deg] pointer-events-none hidden md:block" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full grid flex-1 items-center gap-8 sm:gap-10 lg:gap-12 pt-8 sm:pt-12 pb-24 sm:pb-20 lg:py-6 lg:grid-cols-12">
-        
         {/* العمود الأيسر: النصوص والأزرار */}
         <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col justify-center">
           <Reveal>
@@ -39,7 +38,9 @@ export default function Hero() {
 
           <Reveal delay={0.22}>
             <p className="mt-4 sm:mt-6 max-w-lg text-sm sm:text-base leading-relaxed text-[#575650] font-normal">
-              Building scalable web applications with modern technologies. Transforming complex problems into elegant, user-centric solutions.
+              Building scalable web applications with modern technologies.
+              Transforming complex problems into elegant, user-centric
+              solutions.
             </p>
           </Reveal>
 
@@ -76,7 +77,6 @@ export default function Hero() {
 
             {/* 3. حاوية الصورة الرئيسية */}
             <div className="relative aspect-[3/4] w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[5px_5px_0px_#343630] sm:shadow-[6px_6px_0px_#343630] overflow-visible">
-              
               {/* شارة DEV المطابقة بدقة للصورة: خلفية بيضاء، خط Serif عريض أحمر، إطار أسود */}
               <div className="absolute -top-4 left-3 sm:-top-5 sm:left-4 z-30 bg-white border-2 border-[#141414] px-3.5 py-0.5 sm:py-1 shadow-sm">
                 <span className="font-serif font-black text-xs sm:text-sm tracking-[0.25em] text-[#E03D46] block pl-1">
@@ -109,7 +109,6 @@ export default function Hero() {
             </div>
           </Reveal>
         </div>
-
       </div>
 
       {/* مؤشر SCROLL: متموضع في أسفل الحاوية مع مسافة أمان واضحة أسفل الأزرار */}

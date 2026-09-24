@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -79,11 +80,9 @@ export default function Navbar() {
         >
           {/* مربع الحرف */}
           <span
-            className={`grid h-11 w-11 xl:h-12 xl:w-12 place-items-center border-2 border-[#141414] text-xl xl:text-2xl font-black text-white shadow-[2px_2px_0px_#141414] transition-colors duration-300 ${
-              isLogoTriggered ? "bg-[#E03D46]" : "bg-[#141414] group-hover:bg-[#E03D46]"
-            }`}
+            className={`grid h-11 w-11 xl:h-12 xl:w-12 place-items-center border-2 border-[#141414] text-xl xl:text-2xl font-black text-white shadow-[2px_2px_0px_#141414] transition-colors duration-300 `}
           >
-            A
+            <img src="/images/logo.png" alt="logo" />
           </span>
 
           {/* نص الاسم مع الخط الأحمر السفلي */}
@@ -173,7 +172,7 @@ export default function Navbar() {
 
       {/* خط التقدم المكبر (Progress Line) - تمت زيادة سماكته لـ 4.5px */}
       {scrolled && (
-        <div className="absolute -bottom-[3.5px] left-0 h-[4.5px] w-full bg-transparent overflow-hidden pointer-events-none">
+        <div className="absolute -bottom-[3px] left-0 h-[4.5px] w-full bg-transparent overflow-hidden pointer-events-none">
           <motion.div
             style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
             className="h-full w-full bg-[#E03D46]"

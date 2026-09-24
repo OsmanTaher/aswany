@@ -1,15 +1,21 @@
 "use client";
 
 import Image, { type ImageProps } from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 type Props = ImageProps & {
   fallback?: string;
 };
 
-export default function SafeImage({ fallback = "/images/profile-placeholder.svg", src, alt, ...props }: Props) {
-  const initial = useMemo(() => String(src), [src]);
-  const [currentSrc, setCurrentSrc] = useState<string>(initial);
+export default function SafeImage({
+  fallback = "/images/profile-placeholder.svg",
+  src,
+  alt,
+  ...props
+}: Props) {
+  const source = String(src);
+  const [failedSource, setFailedSource] = useState<string | null>(null);
+  const currentSrc = failedSource === source ? fallback : source;
 
   return (
     <Image
@@ -17,7 +23,7 @@ export default function SafeImage({ fallback = "/images/profile-placeholder.svg"
       src={currentSrc}
       alt={alt}
       onError={() => {
-        if (currentSrc !== fallback) setCurrentSrc(fallback);
+        if (source !== fallback) setFailedSource(source);
       }}
     />
   );
