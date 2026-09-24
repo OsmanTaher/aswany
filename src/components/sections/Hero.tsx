@@ -51,7 +51,7 @@ export default function Hero() {
 
               {/* زر الواتساب الأبيض بالظل الصخري */}
               <a
-                href="https://wa.me/201000000000"
+                href="http://localhost:3000/certifications"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#FAF9F1] !text-[#343630] font-extrabold text-xs tracking-wider uppercase border-2 border-[#343630] shadow-[4px_4px_0px_#343630] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#343630] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"

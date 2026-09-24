@@ -7,7 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
-import { projects, type Project } from "@/data/smallProject";
+import { labs, type Lab } from "@/data/labs";
 
 // أيقونة GitHub الرسمية
 function GithubIcon({ size = 14, className = "" }: { size?: number; className?: string }) {
@@ -69,19 +69,19 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.45,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
 
 export default function ProjectsPage() {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Project[]>([]);
+  const [data, setData] = useState<Lab[]>([]);
 
   useEffect(() => {
     // محاكاة تحميل البيانات لضمان تفعيل الـ Loading
     const timer = setTimeout(() => {
-      setData(projects);
+      setData(labs);
       setLoading(false);
     }, 400);
 

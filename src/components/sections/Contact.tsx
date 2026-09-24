@@ -8,7 +8,6 @@ import {
   Globe, 
   MapPin, 
   Send, 
- 
   CheckCircle2, 
   Loader2 
 } from "lucide-react";

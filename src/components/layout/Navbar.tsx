@@ -126,7 +126,7 @@ export default function Navbar() {
             className="inline-flex items-center gap-2 border-2 border-[#141414] bg-[#FAF9F1] px-5 py-2.5 xl:px-6 xl:py-3 text-[11px] xl:text-[13px] font-black uppercase tracking-[0.12em] text-[#141414] shadow-[3.5px_3.5px_0_#141414] xl:shadow-[4.5px_4.5px_0_#141414] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5.5px_5.5px_0_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none"
           >
             <LayoutGrid size={16} strokeWidth={2.4} className="text-[#141414]" />
-            <span>PROJECTS</span>
+            <span>LABS</span>
           </Link>
 
           {/* 2. زر WHATSAPP المكبر مع صعود اللون الأصفر */}
