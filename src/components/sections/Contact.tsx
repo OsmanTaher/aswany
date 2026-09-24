@@ -1,32 +1,40 @@
 "use client";
 
-
-
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
+import { Mail, Globe, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { 
-  Mail, 
-  Globe, 
-  MapPin, 
-  Send, 
-  CheckCircle2, 
-  Loader2 
-} from "lucide-react";
-import { GithubIcon, LinkedinIcon, FacebookIcon, InstagramIcon } from "@/components/ui/SocialIcons";
+  GithubIcon, 
+  LinkedinIcon, 
+  FacebookIcon, 
+  TelegramIcon,
+  CodeforcesIcon,
+  W3schoolsIcon
+} from "@/components/ui/SocialIcons";
 import Reveal from "@/components/ui/Reveal";
 
-// بيانات شبكات التواصل وروابطها المطابقة للصورة الثانية
 const socialLinks = [
-  { icon: Mail, href: "mailto:aswany4tech@gmail.com", label: "Email" },
   { icon: GithubIcon, href: "https://github.com", label: "GitHub" },
   { icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn" },
   { icon: FacebookIcon, href: "https://facebook.com", label: "Facebook" },
-  { icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
+  { icon: TelegramIcon, href: "https://t.me/aswany", label: "Telegram" },
+  { icon: CodeforcesIcon, href: "https://codeforces.com/profile/YOUR_USERNAME", label: "Codeforces" },
+  { icon: W3schoolsIcon, href: "https://my-learning.w3schools.com", label: "W3Schools" },
 ];
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+useEffect(() => {
+      if (success) {
+        const timer = setTimeout(() => {
+          setSuccess(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+      }
+    }, [success]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,49 +46,101 @@ export default function Contact() {
     const formData = new FormData(form);
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
 
-    // فحص شرطي بسيط بدون مكتبات معقدة
+    // إخفاء رسالة النجاح تلقائياً بعد 3 ثوانٍ
+    
+
+    // 1. التحقق من ملء الحقول الإلزامية
     if (!name || !email || !message) {
-      setErrorMessage("Please fill out all fields.");
+      setErrorMessage("Please fill out all required fields.");
       setLoading(false);
       return;
     }
 
-    // إعداد نص الرسالة المنسق للتيليجرام
-    const text = `📬 *رسالة جديدة من الموقع:*\n\n👤 *الاسم:* ${name}\n📧 *البريد:* ${email}\n💬 *الرسالة:*\n${message}`;
+    // 2. التحقق من احتواء البريد الإلكتروني على علامة "@"
+    if (
+      !email.includes("@") ||
+      email.indexOf("@") === 0 ||
+      email.lastIndexOf("@") === email.length - 1
+    ) {
+      setErrorMessage("Please enter a valid email address containing '@'.");
+      setLoading(false);
+      return;
+    }
 
-    const BOT_TOKEN = "8869276067:AAHaaaKCe9vjtzlYwXIcTVfWWxN0icrPloc";
-    const CHAT_ID = "8952527501";
+    // إعداد نص الرسالة الموجهة للتيليجرام متضمناً رقم الهاتف إذا وجد
+    // إعداد نص الرسالة باللغة الإنجليزية بالكامل
+    let telegramText = `📬 *New Portfolio Inquiry:*\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}`;
+    if (phone) {
+      telegramText += `\n📱 *Phone:* ${phone}`;
+    }
+    telegramText += `\n💬 *Message:*\n${message}`;
+
+    // جلب التوكن ومعرف المحادثة من متغيرات البيئة
+    const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+    const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
+
+    if (!BOT_TOKEN || !CHAT_ID) {
+      setErrorMessage(
+        "Telegram configuration is missing. Please check environment variables.",
+      );
+      setLoading(false);
+      return;
+    }
 
     try {
-      const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: text,
-          parse_mode: "Markdown",
+      // إرسال البيانات بالتوازي إلى تيليجرام و Formspree
+      const [telegramRes] = await Promise.all([
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: telegramText,
+            parse_mode: "Markdown",
+          }),
         }),
-      });
+        fetch("https://formspree.io/f/mdekddwa", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone: phone || "Not provided",
+            message,
+            _subject: `New portfolio inquiry from ${name}`,
+          }),
+        }).catch((err) => {
+          console.error("Formspree forwarding error:", err);
+        }),
+      ]);
 
-      if (response.ok) {
+      if (telegramRes.ok) {
         setSuccess(true);
         form.reset();
       } else {
-        setErrorMessage("Failed to send message. Please try again.");
+        setErrorMessage(
+          "Failed to send message to Telegram. Please try again.",
+        );
       }
     } catch {
-      setErrorMessage("Network error. Please check your connection.");
+      setErrorMessage("Network error. Please check your internet connection.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="relative bg-[#FAF9F1] py-20 lg:py-28 overflow-hidden">
+    <section
+      id="contact"
+      className="relative bg-[#FAF9F1] py-20 lg:py-28 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        
         {/* الترويسة الرئيسية */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal>
@@ -98,7 +158,6 @@ export default function Contact() {
 
         {/* تقسيم الشاشة لعمودين: البيانات يساراً والنموذج يميناً */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
           {/* العمود الأيسر: معلومات التواصل والشبكات */}
           <div className="lg:col-span-5">
             <Reveal delay={0.12}>
@@ -107,12 +166,13 @@ export default function Contact() {
               </h3>
 
               <p className="text-[#6B6A65] text-base leading-relaxed mb-10 max-w-md font-normal">
-                Have a project in mind? Want to collaborate? Or just want to say hello? Feel free to reach out. I’m always open to discussing new opportunities.
+                Have a project in mind? Want to collaborate? Or just want to say
+                hello? Feel free to reach out. I’m always open to discussing new
+                opportunities.
               </p>
 
               {/* بطاقات البيانات الثلاث */}
               <div className="space-y-6">
-                
                 {/* 1. البريد */}
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#141414] text-white flex items-center justify-center border-2 border-[#141414] shrink-0">
@@ -122,7 +182,10 @@ export default function Contact() {
                     <span className="block text-[11px] font-mono font-bold tracking-widest text-[#8F836B] uppercase">
                       EMAIL
                     </span>
-                    <a href="mailto:aswany4tech@gmail.com" className="text-sm sm:text-base font-bold text-[#141414] hover:underline">
+                    <a
+                      href="mailto:aswany4tech@gmail.com"
+                      className="text-sm sm:text-base font-bold text-[#141414] hover:underline"
+                    >
                       aswany4tech@gmail.com
                     </a>
                   </div>
@@ -157,10 +220,9 @@ export default function Contact() {
                     </span>
                   </div>
                 </div>
-
               </div>
 
-              {/* أزرار التواصل الخمسة المربعة مع أنيميشن الـ Hover الصخري */}
+              {/* أزرار التواصل الخمسة المربعة (Mail, GitHub, LinkedIn, Facebook, Telegram) */}
               <div className="mt-10 flex flex-wrap items-center gap-3.5">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
                   <a
@@ -174,15 +236,14 @@ export default function Contact() {
                                hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#141414]
                                active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
                   >
-                    <Icon size={18} strokeWidth={2} />
+                    <Icon size={18} className="shrink-0" />
                   </a>
                 ))}
               </div>
-
             </Reveal>
           </div>
 
-          {/* العمود الأيمن: استمارة المراسلة مع تأثير الـ Hover والظل الثقيل */}
+          {/* العمود الأيمن: استمارة المراسلة */}
           <div className="lg:col-span-7">
             <Reveal delay={0.16}>
               <form
@@ -192,11 +253,13 @@ export default function Contact() {
                            hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0px_#141414]"
               >
                 <div className="space-y-6">
-                  
                   {/* حقل الاسم */}
                   <div>
-                    <label htmlFor="name" className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase mb-2">
-                      YOUR NAME
+                    <label
+                      htmlFor="name"
+                      className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase mb-2"
+                    >
+                      YOUR NAME *
                     </label>
                     <input
                       id="name"
@@ -210,8 +273,11 @@ export default function Contact() {
 
                   {/* حقل البريد */}
                   <div>
-                    <label htmlFor="email" className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase mb-2">
-                      EMAIL ADDRESS
+                    <label
+                      htmlFor="email"
+                      className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase mb-2"
+                    >
+                      EMAIL ADDRESS *
                     </label>
                     <input
                       id="email"
@@ -223,10 +289,35 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* حقل الهاتف الاختياري */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase"
+                      >
+                        PHONE NUMBER
+                      </label>
+                      <span className="text-[10px] font-mono font-bold text-[#8F836B] uppercase tracking-wider">
+                        OPTIONAL
+                      </span>
+                    </div>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+20 100 000 0000"
+                      className="w-full border-2 border-[#141414] bg-white px-4 py-3.5 text-sm text-[#141414] placeholder-[#9E9E9C] font-medium outline-none transition-colors focus:bg-[#FAF9F1]"
+                    />
+                  </div>
+
                   {/* حقل الرسالة */}
                   <div>
-                    <label htmlFor="message" className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase mb-2">
-                      MESSAGE
+                    <label
+                      htmlFor="message"
+                      className="block text-[11px] font-mono font-bold tracking-widest text-[#141414] uppercase mb-2"
+                    >
+                      MESSAGE *
                     </label>
                     <textarea
                       id="message"
@@ -238,19 +329,28 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* رسائل التنبيه والخطأ */}
+                  {/* رسالة الخطأ */}
                   {errorMessage && (
-                    <p className="text-xs font-bold text-[#E03D46]">{errorMessage}</p>
+                    <p className="text-xs font-mono font-bold text-[#E03D46] bg-red-50 border border-[#E03D46] p-3">
+                      {errorMessage}
+                    </p>
                   )}
 
+                  {/* رسالة التأكيد بعد وصول الرسالة للتيليجرام بنجاح */}
                   {success && (
-                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-400 p-3">
-                      <CheckCircle2 size={16} />
-                      Your message has been sent directly to Telegram!
+                    <div className="flex items-center gap-2.5 text-xs font-mono font-bold text-emerald-800 bg-emerald-50 border-2 border-emerald-500 p-3.5 shadow-[2px_2px_0px_#141414] animate-in fade-in slide-in-from-top-2 duration-300">
+                      <CheckCircle2
+                        size={18}
+                        className="text-emerald-600 shrink-0"
+                      />
+                      <span>
+                        Your message has been verified and delivered
+                        successfully to Telegram &amp; Email!
+                      </span>
                     </div>
                   )}
 
-                  {/* زر الإرسال الأحمر النيوبروتالي التفاعلي */}
+                  {/* زر الإرسال التفاعلي */}
                   <button
                     type="submit"
                     disabled={loading}
@@ -272,14 +372,11 @@ export default function Contact() {
                       </>
                     )}
                   </button>
-
                 </div>
               </form>
             </Reveal>
           </div>
-
         </div>
-
       </div>
     </section>
   );

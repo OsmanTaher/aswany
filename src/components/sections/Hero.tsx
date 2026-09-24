@@ -1,6 +1,11 @@
-import { ChevronDown, MessageCircle, MapPin } from "lucide-react";
+import Link from "next/link";
+import {
+  ChevronDown,
+  MapPin,
+  Award,
+  LayoutGrid,
+} from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function Hero() {
   return (
@@ -45,22 +50,32 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.28}>
-            <div className=" mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              {/* زر عرض المشاريع الأسود */}
-              <MagneticButton href="#projects" label="VIEW PROJECTS" />
+  <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+    
+    {/* 1. زر الشهادات الأسود (CERTIFICATIONS) */}
+    <Link
+      href="/certifications"
+      className="inline-flex items-center justify-center gap-3 border-2 border-[#141414] bg-[#141414] px-7 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-black uppercase tracking-[0.14em] !text-white shadow-[3px_3px_0px_#141414] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer"
+    >
+      <Award size={18} strokeWidth={2.5} className="!text-white shrink-0" />
+      <span className="font-black tracking-[0.14em] !text-white">
+        CERTIFICATIONS
+      </span>
+    </Link>
 
-              {/* زر الواتساب الأبيض بالظل الصخري */}
-              <a
-                href="http://localhost:3000/certifications"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#FAF9F1] !text-[#343630] font-extrabold text-xs tracking-wider uppercase border-2 border-[#343630] shadow-[4px_4px_0px_#343630] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#343630] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
-              >
-                <MessageCircle size={16} className="text-[#343630]" />
-                <span>WHATSAPP</span>
-              </a>
-            </div>
-          </Reveal>
+    {/* 2. زر المشاريع / المعمل الأبيض (LABS) */}
+    <Link
+      href="/projects"
+      className="inline-flex items-center justify-center gap-3 border-2 border-[#141414] bg-[#FAF9F1] px-7 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-black uppercase tracking-[0.14em] text-[#141414] shadow-[3px_3px_0px_#141414] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer"
+    >
+      <LayoutGrid size={18} strokeWidth={2.5} className="text-[#141414] shrink-0" />
+      <span className="font-black tracking-[0.14em] text-[#141414]">
+        LABS
+      </span>
+    </Link>
+
+  </div>
+</Reveal>
         </div>
 
         {/* العمود الأيمن: تكوين الصورة كـ Background مع الإطارات */}
