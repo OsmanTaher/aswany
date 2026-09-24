@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SafeImage from "@/components/ui/SafeImage";

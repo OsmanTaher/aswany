@@ -6,28 +6,32 @@ import { motion } from "motion/react";
 
 export default function About() {
   return (
-    <section id="about" className="relative bg-[#FAF9F1] py-20 lg:py-28 overflow-hidden">
+    <section
+      id="about"
+      className="relative bg-[#FAF9F1] py-20 lg:py-28 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
           {/* العمود الأيسر: الصورة الشخصية مع التلوين عند الـ Hover والمربع الأحمر */}
           <div className="lg:col-span-5 flex justify-center lg:justify-start">
             <Reveal className="w-full max-w-[440px]">
               <div className="group relative aspect-[4/5] w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[6px_6px_0px_#343630] overflow-visible">
-                
-                {/* حاوية الصورة: تتحول من الأبيض والأسود إلى الألوان عند تمرير الفأرة */}
-                <div className="relative w-full h-full overflow-hidden bg-[#FAF9F1]">
-                  <SafeImage
-                    src="/images/myPicture.jpg"
-                    alt="Aswany Portrait"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 440px"
-                    className="object-cover grayscale contrast-125 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
-                  />
-                </div>
+                <div className="group relative aspect-[4/5] w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[6px_6px_0px_#343630] overflow-hidden">
+                  {/* 1. حاوية الصورة الشخصية */}
+                  <div className="relative w-full h-full bg-[#FAF9F1]">
+                    <SafeImage
+                      src="/images/myPicture.jpg"
+                      alt="Aswany Portrait"
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 440px"
+                      className="object-cover grayscale contrast-125 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:contrast-100"
+                    />
+                  </div>
 
-                {/* المربع الأحمر المصمت في الركن السفلي الأيمن */}
-                <div className="absolute -bottom-3 -right-3 w-16 h-16 sm:w-20 sm:h-20 bg-[#CA484A] border-2 border-[#343630] z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1 pointer-events-none" />
+                  {/* 2. المربع الأحمر الشفاف في أسفل اليمين المطابق تماماً للصورة */}
+                  <div className="absolute bottom-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-[#CA484A]/80 z-10 pointer-events-none" />
+                </div>
               </div>
             </Reveal>
           </div>
@@ -35,7 +39,6 @@ export default function About() {
           {/* العمود الأيمن: المحتوى والبطاقات */}
           <div className="lg:col-span-7">
             <Reveal delay={0.08}>
-              
               {/* شارة ABOUT المستطيلة المحددة */}
               <div className="inline-block border-2 border-[#343630] bg-[#FAF9F1] px-3 py-0.5 text-xs font-mono font-bold tracking-widest text-[#343630] uppercase mb-4">
                 ABOUT
@@ -49,16 +52,21 @@ export default function About() {
               {/* النصوص التعريفية المطابقة للصورة */}
               <div className="space-y-6 text-[#4A4849] text-base sm:text-lg leading-relaxed font-normal">
                 <p>
-                  Motivated Full-Stack Developer and Cyber Security enthusiast, currently studying Computer Science. Skilled in building scalable and secure web applications using Next.js, React, Node.js, Express, Laravel, and MongoDB.
+                  Motivated Full-Stack Developer and Cyber Security enthusiast,
+                  currently studying Computer Science. Skilled in building
+                  scalable and secure web applications using Next.js, React,
+                  Node.js, Express, Laravel, and MongoDB.
                 </p>
                 <p>
-                  Passionate about clean architecture, security best practices, and continuous learning. Currently focused on building scalable web applications and exploring the intersection of development and cybersecurity.
+                  Passionate about clean architecture, security best practices,
+                  and continuous learning. Currently focused on building
+                  scalable web applications and exploring the intersection of
+                  development and cybersecurity.
                 </p>
               </div>
 
               {/* بطاقات LOCATION و FOCUS التفاعلية مع أنيميشن الظلال الصلبة */}
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-md">
-                
                 {/* بطاقة الموقع الجغرافي (Location) */}
                 <motion.div
                   whileHover={{ x: -4, y: -4 }}
@@ -86,12 +94,9 @@ export default function About() {
                     Full-Stack
                   </span>
                 </motion.div>
-
               </div>
-
             </Reveal>
           </div>
-
         </div>
       </div>
     </section>
