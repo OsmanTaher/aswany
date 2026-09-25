@@ -21,7 +21,7 @@ Open http://localhost:3000
 Place your real assets here:
 
 ```text
-public/images/myPicture.jpg
+public/images/myPicture.webp
 public/images/logo.png
 
 public/projects/docstudy.png
@@ -51,7 +51,6 @@ src/
 ```
 
 The project detail route is included because the supplied design contains dedicated project-detail screens in addition to the one-page portfolio sections.
-
 
 ## Design mapping
 

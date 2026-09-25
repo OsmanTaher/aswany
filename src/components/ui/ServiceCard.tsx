@@ -21,7 +21,7 @@ export default function ServiceCard({ service, index }: { service: ServiceCardDa
             <h3 className="display-font text-3xl font-semibold leading-tight tracking-[-0.03em]">{service.title}</h3>
             {Icon && <Icon size={22} strokeWidth={1.7} />}
           </div>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">{service.description}</p>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-(--muted) sm:text-base">{service.description}</p>
           <div className="chip-list">
             {service.technologies.map((item) => (
               <span key={item} className="chip">{item}</span>

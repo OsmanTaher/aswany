@@ -1,4 +1,4 @@
-import { Code2, Layers3, Smartphone, ShieldCheck } from "lucide-react";
+import { Code2, Layers3, Smartphone, ShieldCheck, Terminal } from "lucide-react";
 import type { ServiceCardData } from "@/components/ui/ServiceCard";
 
 export const services: ServiceCardData[] = [
@@ -18,10 +18,10 @@ export const services: ServiceCardData[] = [
   },
   {
     number: "03",
-    title: "Mobile App Development",
-    description: "Designing and shipping cross-platform mobile products with API integration, local state and release workflows.",
-    technologies: ["React Native", "Expo", "Push Notifications", "API Integration", "Store Deployment"],
-    icon: Smartphone,
+    title: "DevOps & Deployment Workflow",
+    description: "Containerizing applications with Docker, managing database lifecycles, and automating developer workflows with efficient terminal tooling and modern deployment pipelines",
+    technologies: ["Git & GitHub", "Docker", "Environment Config", "CI/CD", "Deployment"],
+    icon: Terminal,
   },
   {
     number: "04",

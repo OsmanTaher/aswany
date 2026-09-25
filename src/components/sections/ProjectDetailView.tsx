@@ -57,11 +57,11 @@ interface ProjectDetailViewProps {
 }
 
 export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
-  // مصفوفة الصور المعتمدة (تستخدم صور gallery للمشروع مباشرة)
+  
   const galleryScreens: string[] =
     project.gallery && project.gallery.length > 0
       ? project.gallery
-      : [project.image || `/projects/${project.slug}.png`];
+      : [project.image || `/projects/${project.slug}.webp`];
 
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -80,7 +80,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const projectYear = project.year || "2026";
   const projectLiveUrl = project.liveUrl || "#";
 
-  // دوال التنقل في نافذة المعاينة
+  
   const nextLightboxImage = useCallback(() => {
     setLightboxIndex((prev) => (prev + 1) % galleryScreens.length);
   }, [galleryScreens.length]);
@@ -96,7 +96,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
     setLightboxOpen(true);
   };
 
-  // الاستماع لأزرار الكيبورد: الأسهم لليمين واليسار وزر Esc للخروج
+  
   useEffect(() => {
     if (!lightboxOpen) return;
 
@@ -116,10 +116,10 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
 
   return (
     <div className="bg-[#FAF9F1]">
-      {/* 1. قسم الواجهة وتفاصيل المشروع (خالٍ من الخطوط السفلية) */}
+      
       <section className="pt-8 pb-16 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          {/* زر العودة للمشاريع */}
+          
           <div className="mb-8">
             <Link
               href="/#projects"
@@ -131,12 +131,12 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* الجانب الأيسر: شاشة الماك الرئيسية وشريط المعاينة الأفقي */}
+            
             <div className="lg:col-span-7">
               <Reveal>
-                {/* إطار شاشة الماك */}
+                
                 <div className="relative bg-[#141414] rounded-2xl p-3 sm:p-4 border-2 border-[#141414] shadow-[6px_6px_0px_#141414]">
-                  {/* شريط المتصفح */}
+                  
                   <div className="flex items-center justify-between px-2 py-1 mb-3">
                     <div className="flex items-center gap-1.5">
                       <span className="w-3 h-3 rounded-full bg-[#EF4444] inline-block" />
@@ -144,16 +144,16 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                       <span className="w-3 h-3 rounded-full bg-[#10B981] inline-block" />
                     </div>
 
-                    <div className="bg-neutral-900 border border-neutral-700 px-4 py-0.5 rounded text-[11px] font-mono text-neutral-400 truncate max-w-[220px] sm:max-w-[320px]">
+                    <div className="bg-neutral-900 border border-neutral-700 px-4 py-0.5 rounded text-[11px] font-mono text-neutral-400 truncate max-w-55 sm:max-w-[320px]">
                       {projectLiveUrl.replace(/^https?:\/\//, "") ||
-                        "https://gomla-store.online"}
+                        "https://www.beyligomla.store/"}
                     </div>
 
                     <div className="w-12 h-1.5 rounded-full bg-neutral-700/50 hidden sm:block" />
                   </div>
 
-                  {/* الصورة داخل الشاشة */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-neutral-950 border border-neutral-800">
+                  
+                  <div className="relative aspect-16/10 w-full overflow-hidden rounded-lg bg-neutral-950 border border-neutral-800">
                     <SafeImage
                       src={project.image}
                       alt={project.title}
@@ -165,11 +165,11 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                {/* شريط التمرير الأفقي مع مؤشر التتبع المطابق للصورة 52 */}
+                
                 <div className="mt-6">
                   <div
                     className="flex items-center gap-4 overflow-x-auto pb-4 pt-1 px-1 scroll-smooth
-                               [scrollbar-width:auto] [scrollbar-color:#141414_#EAE7DF]
+                               scrollbar-auto [scrollbar-color:#141414_#EAE7DF]
                                [&::-webkit-scrollbar]:h-5
                                [&::-webkit-scrollbar-track]:bg-[#EAE7DF]
                                [&::-webkit-scrollbar-thumb]:bg-[#141414]"
@@ -181,7 +181,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                           setActiveScreenIndex(idx);
                           openLightbox(idx);
                         }}
-                        className={`relative aspect-[16/10] w-32 sm:w-40 shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
+                        className={`relative aspect-16/10 w-32 sm:w-40 shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
                           activeScreenIndex === idx
                             ? "border-[#E03D46] shadow-[3px_3px_0px_#141414] -translate-y-1"
                             : "border-[#141414] opacity-80 hover:opacity-100 hover:-translate-y-0.5"
@@ -200,10 +200,10 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
               </Reveal>
             </div>
 
-            {/* الجانب الأيمن: بيانات دراسة الحالة */}
+            
             <div className="lg:col-span-5 flex flex-col justify-center">
               <Reveal delay={0.08}>
-                {/* الشارات العلوية */}
+                
                 <div className="flex items-center gap-2.5 mb-5">
                   <div className="bg-[#E03D46] border-2 border-[#141414] px-3 py-1 flex items-center justify-center">
                     <span className="font-mono font-black text-xs text-white tracking-wider leading-none">
@@ -224,20 +224,20 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                {/* العنوان الرئيسي */}
+                
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black text-[#141414] tracking-tight leading-tight mb-4">
                   {project.title}
                 </h1>
 
-                {/* خط فاصل خفيف وناعم */}
+                
                 <div className="w-full border-b border-[#141414]/15 my-4" />
 
-                {/* الوصف */}
+                
                 <p className="text-[#6B6A65] text-sm sm:text-base leading-relaxed mb-6 font-normal">
                   {project.description}
                 </p>
 
-                {/* كبسولات التقنيات باللون الذهبي */}
+                
                 <div className="mb-6">
                   <span className="block text-[11px] font-mono font-bold tracking-[0.16em] text-[#8F836B] uppercase mb-3">
                     TECHNOLOGIES
@@ -254,7 +254,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                {/* وسم السنة */}
+                
                 <div className="mb-8">
                   <span className="block text-[11px] font-mono font-bold tracking-[0.16em] text-[#8F836B] uppercase mb-2">
                     PROJECT YEAR
@@ -264,7 +264,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                {/* زر زيارة الموقع */}
+                
                 <a
                   href={projectLiveUrl}
                   target="_blank"
@@ -280,7 +280,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      {/* 2. قسم المميزات الرئيسية (خالٍ من الخطوط السفلية) */}
+      
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex items-center gap-3.5 mb-14">
@@ -322,7 +322,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      {/* 3. معرض الشاشات الكامل (خالٍ من الخطوط السفلية) */}
+      
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex items-center justify-between flex-wrap gap-4 mb-14">
@@ -347,7 +347,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
               <Reveal key={index} delay={index * 0.03}>
                 <div
                   onClick={() => openLightbox(index)}
-                  className="group relative aspect-[16/10] w-full rounded-md overflow-hidden border-2 border-[#141414] bg-neutral-900 cursor-pointer shadow-[3px_3px_0px_#141414] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0px_#141414] transition-all duration-200"
+                  className="group relative aspect-16/10 w-full rounded-md overflow-hidden border-2 border-[#141414] bg-neutral-900 cursor-pointer shadow-[3px_3px_0px_#141414] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0px_#141414] transition-all duration-200"
                 >
                   <SafeImage
                     src={screen}
@@ -366,11 +366,11 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      {/* 4. قسم الخاتمة والدعوة للعمل مع إصلاح زر START A CONVERSATION بالكامل */}
+      
       <section className="relative bg-[#E03D46] py-24 sm:py-32 overflow-hidden text-center text-white">
-        {/* المربعات الديكورية الشفافة */}
+        
         <div className="absolute -top-10 -left-10 w-48 h-48 border-2 border-white/20 rotate-[-15deg] pointer-events-none" />
-        <div className="absolute -bottom-14 -right-10 w-64 h-64 border-2 border-white/20 rotate-[12deg] pointer-events-none" />
+        <div className="absolute -bottom-14 -right-10 w-64 h-64 border-2 border-white/20 rotate-12 pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
           <Reveal>
@@ -385,32 +385,32 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             </p>
           </Reveal>
 
-          {/* زر START A CONVERSATION - تم ضبط لونه الأسود الصريح ليظهر بوضوح تام */}
+          
           <Reveal delay={0.16}>
             <Link
               href="/#contact"
-              className="inline-flex items-center justify-center gap-2.5 bg-white !text-[#141414] px-8 py-4 text-xs sm:text-sm font-black uppercase tracking-[0.14em] border-2 border-[#141414] shadow-[4px_4px_0px_#141414] transition-all duration-200 hover:bg-[#141414] hover:!text-white hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 bg-white text-[#141414]! px-8 py-4 text-xs sm:text-sm font-black uppercase tracking-[0.14em] border-2 border-[#141414] shadow-[4px_4px_0px_#141414] transition-all duration-200 hover:bg-[#141414] hover:text-white! hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer"
             >
-              <span className="font-mono font-black tracking-wider !text-current">
+              <span className="font-mono font-black tracking-wider text-current!">
                 START A CONVERSATION
               </span>
               <ArrowUpRight
                 size={16}
                 strokeWidth={2.4}
-                className="shrink-0 !text-current"
+                className="shrink-0 text-current!"
               />
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* 5. نافذة المعاينة الكبيرة (تدعم الأسهم وزر Esc) */}
+      
       {lightboxOpen && (
         <div
           onClick={() => setLightboxOpen(false)}
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
         >
-          {/* زر الإغلاق */}
+          
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -423,7 +423,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <X size={24} />
           </button>
 
-          {/* زر السابق */}
+          
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -436,10 +436,10 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <ChevronLeft size={26} />
           </button>
 
-          {/* صورة المعاينة */}
+          
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl aspect-[16/10] bg-neutral-950 rounded-xl overflow-hidden border border-neutral-800 shadow-2xl"
+            className="relative w-full max-w-5xl aspect-16/10 bg-neutral-950 rounded-xl overflow-hidden border border-neutral-800 shadow-2xl"
           >
             <SafeImage
               src={galleryScreens[lightboxIndex]}
@@ -449,7 +449,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             />
           </div>
 
-          {/* زر التالي */}
+          
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -462,7 +462,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <ChevronRight size={26} />
           </button>
 
-          {/* نقاط الترقيم في الأسفل */}
+          
           <div
             onClick={(e) => e.stopPropagation()}
             className="mt-5 flex items-center gap-2 max-w-md overflow-x-auto px-4 py-2"

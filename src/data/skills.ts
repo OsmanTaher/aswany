@@ -1,7 +1,7 @@
 export const skillGroups = [
   {
     title: "Frontend",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "JavaScript"],
+    items: ["Next.js", "TypeScript", "Tailwind CSS", "JavaScript"],
   },
   {
     title: "Backend",
@@ -13,6 +13,6 @@ export const skillGroups = [
   },
   {
     title: "Tools",
-    items: ["Git / GitHub", "Docker", "Postman", "Vercel", "Cloudflare"],
+    items: ["Git / GitHub", "Docker", "Postman", "Vercel", "Cloudflare","Cloundinary"],
   },
 ] as const;

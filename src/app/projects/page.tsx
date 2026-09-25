@@ -9,8 +9,13 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 import { labs, type Lab } from "@/data/labs";
 
-// أيقونة GitHub الرسمية
-function GithubIcon({ size = 14, className = "" }: { size?: number; className?: string }) {
+function GithubIcon({
+  size = 14,
+  className = "",
+}: {
+  size?: number;
+  className?: string;
+}) {
   return (
     <svg
       width={size}
@@ -28,12 +33,11 @@ function GithubIcon({ size = 14, className = "" }: { size?: number; className?: 
   );
 }
 
-// كارت التحميل الهيكلي (Skeleton Card)
 function ProjectCardSkeleton() {
   return (
     <div className="flex flex-col justify-between rounded-2xl border border-neutral-200 bg-white/60 p-4 sm:p-5 animate-pulse">
       <div>
-        <div className="aspect-[16/10] w-full rounded-xl bg-neutral-200" />
+        <div className="aspect-16/10 w-full rounded-xl bg-neutral-200" />
         <div className="mt-4 h-5 w-3/4 rounded bg-neutral-200" />
         <div className="mt-2.5 h-3.5 w-full rounded bg-neutral-200" />
         <div className="mt-1.5 h-3.5 w-5/6 rounded bg-neutral-200" />
@@ -51,7 +55,6 @@ function ProjectCardSkeleton() {
   );
 }
 
-// إعدادات حركة الظهور المتتابع
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -79,7 +82,6 @@ export default function ProjectsPage() {
   const [data, setData] = useState<Lab[]>([]);
 
   useEffect(() => {
-    // محاكاة تحميل البيانات لضمان تفعيل الـ Loading
     const timer = setTimeout(() => {
       setData(labs);
       setLoading(false);
@@ -93,9 +95,7 @@ export default function ProjectsPage() {
       <Navbar />
 
       <main className="flex-1 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
-          
-          {/* زر الرجوع للرئيسية */}
+        <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-10">
           <div className="mb-8">
             <Link
               href="/"
@@ -106,18 +106,17 @@ export default function ProjectsPage() {
             </Link>
           </div>
 
-          {/* ترويسة الصفحة */}
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <div className="inline-flex items-center justify-center gap-2 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#141414]">
               <span className="text-[#E03D46] font-serif leading-none">*</span>
               <h1 className="font-serif">More Projects</h1>
             </div>
             <p className="mt-4 text-xs sm:text-sm font-mono text-neutral-600 tracking-tight">
-              Additional projects showcasing various technologies and learning experiences.
+              Additional projects showcasing various technologies and learning
+              experiences.
             </p>
           </div>
 
-          {/* عرض حالة التحميل (Loading State) */}
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch">
               {Array.from({ length: 8 }).map((_, index) => (
@@ -125,7 +124,6 @@ export default function ProjectsPage() {
               ))}
             </div>
           ) : (
-            /* شبكة المشاريع الحقيقية مع أنيميشن الدخول */
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -133,8 +131,12 @@ export default function ProjectsPage() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch"
             >
               {data.map((item, index) => {
-                const hasLive = Boolean(item.liveUrl && item.liveUrl.trim() !== "");
-                const hasGithub = Boolean(item.githubUrl && item.githubUrl.trim() !== "");
+                const hasLive = Boolean(
+                  item.liveUrl && item.liveUrl.trim() !== "",
+                );
+                const hasGithub = Boolean(
+                  item.githubUrl && item.githubUrl.trim() !== "",
+                );
 
                 return (
                   <motion.article
@@ -143,8 +145,7 @@ export default function ProjectsPage() {
                     className="group relative flex flex-col justify-between rounded-2xl border border-neutral-300/80 bg-white/70 p-4 sm:p-5 transition-all duration-300 hover:border-[#141414] hover:shadow-[4px_4px_0px_#141414] hover:-translate-y-1"
                   >
                     <div>
-                      {/* حاوية الصورة المصغرة */}
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-neutral-200/90 bg-neutral-100">
+                      <div className="relative aspect-16/10 w-full overflow-hidden rounded-xl border border-neutral-200/90 bg-neutral-100">
                         <SafeImage
                           src={item.image}
                           alt={item.title}
@@ -154,17 +155,14 @@ export default function ProjectsPage() {
                         />
                       </div>
 
-                      {/* عنوان المشروع */}
                       <h3 className="mt-4 text-base font-bold text-[#141414] tracking-tight">
                         {item.title}
                       </h3>
 
-                      {/* الوصف */}
                       <p className="mt-1.5 text-xs font-mono text-neutral-500 leading-relaxed line-clamp-3">
                         {item.description}
                       </p>
 
-                      {/* وسوم التقنيات */}
                       {item.stack && item.stack.length > 0 && (
                         <div className="mt-4 flex flex-wrap gap-1.5">
                           {item.stack.map((tech) => (
@@ -179,10 +177,8 @@ export default function ProjectsPage() {
                       )}
                     </div>
 
-                    {/* أزرار الإجراءات المشروطة (Live & Source) */}
                     {(hasLive || hasGithub) && (
                       <div className="mt-6 flex items-center gap-2 border-t border-neutral-100 pt-3">
-                        {/* زر GitHub Source */}
                         {hasGithub && (
                           <a
                             href={item.githubUrl}
@@ -195,7 +191,6 @@ export default function ProjectsPage() {
                           </a>
                         )}
 
-                        {/* زر Live Demo */}
                         {hasLive && (
                           <a
                             href={item.liveUrl}
@@ -203,7 +198,11 @@ export default function ProjectsPage() {
                             rel="noreferrer"
                             className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-xs font-mono font-bold text-neutral-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#E03D46] hover:bg-[#E03D46] hover:text-white hover:shadow-[2px_2px_0px_#141414]"
                           >
-                            <ExternalLink size={13} strokeWidth={2.4} className="shrink-0" />
+                            <ExternalLink
+                              size={13}
+                              strokeWidth={2.4}
+                              className="shrink-0"
+                            />
                             <span>Live</span>
                           </a>
                         )}
@@ -214,7 +213,6 @@ export default function ProjectsPage() {
               })}
             </motion.div>
           )}
-
         </div>
       </main>
 

@@ -31,10 +31,10 @@ export default function MagneticButton({ href, label }: { href: string; label: s
       onMouseMove={move}
       onMouseLeave={reset}
       style={{ x: springX, y: springY }}
-      className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#1a1a1a] !text-white font-extrabold text-xs tracking-wider uppercase border-2 border-[#343630] shadow-[4px_4px_0px_#343630] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#343630] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+      className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#1a1a1a] text-white! font-extrabold text-xs tracking-wider uppercase border-2 border-[#343630] shadow-[4px_4px_0px_#343630] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#343630] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all cursor-pointer"
     >
-      <span className="!text-white font-extrabold">{label}</span>
-      <ArrowRight size={15} className="!text-white" />
+      <span className="text-white! font-extrabold">{label}</span>
+      <ArrowRight size={15} className="text-white!" />
     </motion.a>
   );
 }

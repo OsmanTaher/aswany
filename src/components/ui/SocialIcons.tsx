@@ -3,7 +3,6 @@ interface IconProps {
   size?: number;
 }
 
-// 1. أيقونة GitHub
 export function GithubIcon({ size = 18, className = "" }: IconProps) {
   return (
     <svg
@@ -22,7 +21,6 @@ export function GithubIcon({ size = 18, className = "" }: IconProps) {
   );
 }
 
-// 2. أيقونة LinkedIn
 export function LinkedinIcon({ size = 18, className = "" }: IconProps) {
   return (
     <svg
@@ -37,7 +35,6 @@ export function LinkedinIcon({ size = 18, className = "" }: IconProps) {
   );
 }
 
-// 3. أيقونة Facebook
 export function FacebookIcon({ size = 18, className = "" }: IconProps) {
   return (
     <svg
@@ -52,8 +49,13 @@ export function FacebookIcon({ size = 18, className = "" }: IconProps) {
   );
 }
 
-// 4. أيقونة Instagram
-export function TelegramIcon({ size = 18, className = "" }: { size?: number; className?: string }) {
+export function TelegramIcon({
+  size = 18,
+  className = "",
+}: {
+  size?: number;
+  className?: string;
+}) {
   return (
     <svg
       width={size}
@@ -80,7 +82,7 @@ export function WhatsAppIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-// أيقونة كودفورس (Codeforces) الرسمية باللون الموحد
+
 export function CodeforcesIcon({
   size = 18,
   className = "",
@@ -97,17 +99,36 @@ export function CodeforcesIcon({
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* العمود الأيسر */}
-      <rect x="1.5" y="9" width="4.8" height="13" rx="2.4" fill="currentColor" />
-      {/* العمود الأوسط الأطول */}
-      <rect x="9.6" y="2" width="4.8" height="20" rx="2.4" fill="currentColor" />
-      {/* العمود الأيمن */}
-      <rect x="17.7" y="11.5" width="4.8" height="10.5" rx="2.4" fill="currentColor" />
+      <rect
+        x="1.5"
+        y="9"
+        width="4.8"
+        height="13"
+        rx="2.4"
+        fill="currentColor"
+      />
+
+      <rect
+        x="9.6"
+        y="2"
+        width="4.8"
+        height="20"
+        rx="2.4"
+        fill="currentColor"
+      />
+
+      <rect
+        x="17.7"
+        y="11.5"
+        width="4.8"
+        height="10.5"
+        rx="2.4"
+        fill="currentColor"
+      />
     </svg>
   );
 }
 
-// أيقونة دبليو ثري سكولز (W3Schools) الهندسية الكاملة
 export function W3schoolsIcon({
   size = 18,
   className = "",
@@ -124,12 +145,11 @@ export function W3schoolsIcon({
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* حرف W الهندسي الكامل بجميع أضلاعه المتوازية */}
       <path
         d="M1.5 7.5 L7.2 22.5 L13 6.5 L18.2 17.5 H14.6 L11.3 10.5 L8.8 17.3 L5.1 7.5 Z"
         fill="currentColor"
       />
-      {/* الرقم 3 العلوي بحجم أكبر وموضع بارز في الأعلى */}
+
       <path
         d="M16.0 1.2 H22.5 V3.2 L19.2 5.0 C21.0 5.2 22.5 6.4 22.5 8.2 C22.5 10.2 20.8 11.5 18.5 11.5 C16.2 11.5 14.8 10.2 14.6 8.5 H17.0 C17.1 9.3 17.7 9.8 18.5 9.8 C19.4 9.8 20.0 9.1 20.0 8.2 C20.0 7.2 19.3 6.6 18.2 6.6 H17.0 V4.8 L19.8 3.0 H16.0 Z"
         fill="currentColor"

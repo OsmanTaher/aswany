@@ -12,15 +12,13 @@ export default function About() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* العمود الأيسر: الصورة الشخصية مع التلوين عند الـ Hover والمربع الأحمر */}
           <div className="lg:col-span-5 flex justify-center lg:justify-start">
-            <Reveal className="w-full max-w-[440px]">
-              <div className="group relative aspect-[4/5] w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[6px_6px_0px_#343630] overflow-visible">
-                <div className="group relative aspect-[4/5] w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[6px_6px_0px_#343630] overflow-hidden">
-                  {/* 1. حاوية الصورة الشخصية */}
+            <Reveal className="w-full max-w-110">
+              <div className="group relative aspect-4/5 w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[6px_6px_0px_#343630] overflow-visible">
+                <div className="group relative aspect-4/5 w-full border-2 border-[#343630] bg-[#FAF9F1] shadow-[6px_6px_0px_#343630] overflow-hidden">
                   <div className="relative w-full h-full bg-[#FAF9F1]">
                     <SafeImage
-                      src="/images/myPicture.jpg"
+                      src="/images/myPicture.webp"
                       alt="Aswany Portrait"
                       fill
                       priority
@@ -29,45 +27,32 @@ export default function About() {
                     />
                   </div>
 
-                  {/* 2. المربع الأحمر الشفاف في أسفل اليمين المطابق تماماً للصورة */}
                   <div className="absolute bottom-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-[#CA484A]/80 z-10 pointer-events-none" />
                 </div>
               </div>
             </Reveal>
           </div>
 
-          {/* العمود الأيمن: المحتوى والبطاقات */}
           <div className="lg:col-span-7">
             <Reveal delay={0.08}>
-              {/* شارة ABOUT المستطيلة المحددة */}
-              <div className="inline-block border-2 border-[#343630] bg-[#FAF9F1] px-3 py-0.5 text-xs font-mono font-bold tracking-widest text-[#343630] uppercase mb-4">
+              <div className="inline-block border-[3px] border-[#343630] bg-[#FAF9F1] px-4 py-2 mb-10 text-[15px] font-mono font-bold text-[#343630] uppercase">
                 ABOUT
               </div>
 
-              {/* العنوان الرئيسي بخط Serif عريض */}
               <h2 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-black text-[#343630] tracking-tight mb-8">
                 Who I Am
               </h2>
 
-              {/* النصوص التعريفية المطابقة للصورة */}
               <div className="space-y-6 text-[#4A4849] text-base sm:text-lg leading-relaxed font-normal">
                 <p>
-                  Motivated Full-Stack Developer and Cyber Security enthusiast,
-                  currently studying Computer Science. Skilled in building
-                  scalable and secure web applications using Next.js, React,
-                  Node.js, Express, Laravel, and MongoDB.
+                  Motivated Full-Stack Developer with a dedicated focus on modern web development. Skilled in building scalable, responsive, and user-centric web applications from the ground up using JavaScript, TypeScript, React, Next.js, Tailwind CSS, and Express.js.
                 </p>
                 <p>
-                  Passionate about clean architecture, security best practices,
-                  and continuous learning. Currently focused on building
-                  scalable web applications and exploring the intersection of
-                  development and cybersecurity.
+                  Passionate about clean architecture, structured system design using UML, efficient terminal workflows, and continuous learning. Currently focused on engineering modern web solutions while expanding my backend and DevOps toolkit with PostgreSQL and Docker.
                 </p>
               </div>
 
-              {/* بطاقات LOCATION و FOCUS التفاعلية مع أنيميشن الظلال الصلبة */}
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-md">
-                {/* بطاقة الموقع الجغرافي (Location) */}
                 <motion.div
                   whileHover={{ x: -4, y: -4 }}
                   transition={{ type: "spring", stiffness: 350, damping: 22 }}
@@ -77,11 +62,10 @@ export default function About() {
                     LOCATION
                   </span>
                   <span className="font-serif text-2xl font-black text-[#343630]">
-                    Minya, Egypt
+                    Aswan, Egypt
                   </span>
                 </motion.div>
 
-                {/* بطاقة التخصص (Focus) - مميزة بالظل الصلب المباشر كما في الصورة */}
                 <motion.div
                   whileHover={{ x: -4, y: -4 }}
                   transition={{ type: "spring", stiffness: 350, damping: 22 }}

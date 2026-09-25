@@ -1,24 +1,52 @@
 "use client";
 
 import { useState, useEffect, FormEvent } from "react";
-import { Mail, Globe, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
-import { 
-  GithubIcon, 
-  LinkedinIcon, 
-  FacebookIcon, 
+import {
+  Mail,
+  Globe,
+  MapPin,
+  Send,
+  CheckCircle2,
+  Loader2,
+  Phone,
+} from "lucide-react";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  FacebookIcon,
   TelegramIcon,
   CodeforcesIcon,
-  W3schoolsIcon
+  W3schoolsIcon,
 } from "@/components/ui/SocialIcons";
 import Reveal from "@/components/ui/Reveal";
 
 const socialLinks = [
-  { icon: GithubIcon, href: "https://github.com", label: "GitHub" },
-  { icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: FacebookIcon, href: "https://facebook.com", label: "Facebook" },
-  { icon: TelegramIcon, href: "https://t.me/aswany", label: "Telegram" },
-  { icon: CodeforcesIcon, href: "https://codeforces.com/profile/YOUR_USERNAME", label: "Codeforces" },
-  { icon: W3schoolsIcon, href: "https://my-learning.w3schools.com", label: "W3Schools" },
+  { icon: GithubIcon, href: "https://github.com/OsmanTaher", label: "GitHub" },
+  {
+    icon: LinkedinIcon,
+    href: "https://www.linkedin.com/in/osman-taher-661724326/",
+    label: "LinkedIn",
+  },
+  {
+    icon: FacebookIcon,
+    href: "https://www.facebook.com/twshkndy.qlashy",
+    label: "Facebook",
+  },
+  {
+    icon: TelegramIcon,
+    href: "tg://resolve?phone=201080859921",
+    label: "Telegram",
+  },
+  {
+    icon: CodeforcesIcon,
+    href: "https://codeforces.com/profile/Osman_Alnoby",
+    label: "Codeforces",
+  },
+  {
+    icon: W3schoolsIcon,
+    href: "https://www.w3profile.com/OsmanTaher/",
+    label: "W3Schools",
+  },
 ];
 
 export default function Contact() {
@@ -26,15 +54,15 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-useEffect(() => {
-      if (success) {
-        const timer = setTimeout(() => {
-          setSuccess(false);
-        }, 3000);
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
 
-        return () => clearTimeout(timer);
-      }
-    }, [success]);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,17 +77,12 @@ useEffect(() => {
     const phone = String(formData.get("phone") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
 
-    // إخفاء رسالة النجاح تلقائياً بعد 3 ثوانٍ
-    
-
-    // 1. التحقق من ملء الحقول الإلزامية
     if (!name || !email || !message) {
       setErrorMessage("Please fill out all required fields.");
       setLoading(false);
       return;
     }
 
-    // 2. التحقق من احتواء البريد الإلكتروني على علامة "@"
     if (
       !email.includes("@") ||
       email.indexOf("@") === 0 ||
@@ -70,15 +93,12 @@ useEffect(() => {
       return;
     }
 
-    // إعداد نص الرسالة الموجهة للتيليجرام متضمناً رقم الهاتف إذا وجد
-    // إعداد نص الرسالة باللغة الإنجليزية بالكامل
     let telegramText = `📬 *New Portfolio Inquiry:*\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}`;
     if (phone) {
       telegramText += `\n📱 *Phone:* ${phone}`;
     }
     telegramText += `\n💬 *Message:*\n${message}`;
 
-    // جلب التوكن ومعرف المحادثة من متغيرات البيئة
     const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
     const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
@@ -91,7 +111,6 @@ useEffect(() => {
     }
 
     try {
-      // إرسال البيانات بالتوازي إلى تيليجرام و Formspree
       const [telegramRes] = await Promise.all([
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: "POST",
@@ -141,7 +160,6 @@ useEffect(() => {
       className="relative bg-[#FAF9F1] py-20 lg:py-28 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        {/* الترويسة الرئيسية */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal>
             <span className="inline-block px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-widest bg-[#E03D46] text-white border-2 border-[#141414] shadow-[2px_2px_0px_#141414] mb-4">
@@ -156,9 +174,7 @@ useEffect(() => {
           </Reveal>
         </div>
 
-        {/* تقسيم الشاشة لعمودين: البيانات يساراً والنموذج يميناً */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* العمود الأيسر: معلومات التواصل والشبكات */}
           <div className="lg:col-span-5">
             <Reveal delay={0.12}>
               <h3 className="font-serif text-3xl sm:text-4xl font-black text-[#141414] mb-5">
@@ -171,9 +187,7 @@ useEffect(() => {
                 opportunities.
               </p>
 
-              {/* بطاقات البيانات الثلاث */}
               <div className="space-y-6">
-                {/* 1. البريد */}
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#141414] text-white flex items-center justify-center border-2 border-[#141414] shrink-0">
                     <Mail size={18} strokeWidth={2} />
@@ -183,30 +197,33 @@ useEffect(() => {
                       EMAIL
                     </span>
                     <a
-                      href="mailto:aswany4tech@gmail.com"
+                      href="mailto:fciluxor2027@gmail.com"
                       className="text-sm sm:text-base font-bold text-[#141414] hover:underline"
                     >
-                      aswany4tech@gmail.com
+                      fciluxor2027@gmail.com
                     </a>
                   </div>
                 </div>
 
-                {/* 2. الموقع */}
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#141414] text-white flex items-center justify-center border-2 border-[#141414] shrink-0">
-                    <Globe size={18} strokeWidth={2} />
+                    <Phone size={18} strokeWidth={2} />
                   </div>
                   <div>
                     <span className="block text-[11px] font-mono font-bold tracking-widest text-[#8F836B] uppercase">
-                      WEBSITE
+                      PHONE / WHATSAPP
                     </span>
-                    <span className="text-sm sm:text-base font-bold text-[#141414]">
-                      aswany.pro
-                    </span>
+                    <a
+                      href="tel:+201080859921"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm sm:text-base font-bold text-[#141414] hover:underline"
+                    >
+                      +20 1080859921
+                    </a>
                   </div>
                 </div>
 
-                {/* 3. الموقع الجغرافي */}
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#141414] text-white flex items-center justify-center border-2 border-[#141414] shrink-0">
                     <MapPin size={18} strokeWidth={2} />
@@ -216,13 +233,12 @@ useEffect(() => {
                       LOCATION
                     </span>
                     <span className="text-sm sm:text-base font-bold text-[#141414]">
-                      Minya, Egypt
+                      Aswan, Egypt
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* أزرار التواصل الخمسة المربعة (Mail, GitHub, LinkedIn, Facebook, Telegram) */}
               <div className="mt-10 flex flex-wrap items-center gap-3.5">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
                   <a
@@ -243,7 +259,6 @@ useEffect(() => {
             </Reveal>
           </div>
 
-          {/* العمود الأيمن: استمارة المراسلة */}
           <div className="lg:col-span-7">
             <Reveal delay={0.16}>
               <form
@@ -253,7 +268,6 @@ useEffect(() => {
                            hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0px_#141414]"
               >
                 <div className="space-y-6">
-                  {/* حقل الاسم */}
                   <div>
                     <label
                       htmlFor="name"
@@ -271,7 +285,6 @@ useEffect(() => {
                     />
                   </div>
 
-                  {/* حقل البريد */}
                   <div>
                     <label
                       htmlFor="email"
@@ -289,7 +302,6 @@ useEffect(() => {
                     />
                   </div>
 
-                  {/* حقل الهاتف الاختياري */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <label
@@ -311,7 +323,6 @@ useEffect(() => {
                     />
                   </div>
 
-                  {/* حقل الرسالة */}
                   <div>
                     <label
                       htmlFor="message"
@@ -329,14 +340,12 @@ useEffect(() => {
                     />
                   </div>
 
-                  {/* رسالة الخطأ */}
                   {errorMessage && (
                     <p className="text-xs font-mono font-bold text-[#E03D46] bg-red-50 border border-[#E03D46] p-3">
                       {errorMessage}
                     </p>
                   )}
 
-                  {/* رسالة التأكيد بعد وصول الرسالة للتيليجرام بنجاح */}
                   {success && (
                     <div className="flex items-center gap-2.5 text-xs font-mono font-bold text-emerald-800 bg-emerald-50 border-2 border-emerald-500 p-3.5 shadow-[2px_2px_0px_#141414] animate-in fade-in slide-in-from-top-2 duration-300">
                       <CheckCircle2
@@ -350,7 +359,6 @@ useEffect(() => {
                     </div>
                   )}
 
-                  {/* زر الإرسال التفاعلي */}
                   <button
                     type="submit"
                     disabled={loading}

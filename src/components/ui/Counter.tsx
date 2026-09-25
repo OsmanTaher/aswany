@@ -6,7 +6,7 @@ export default function Counter({ value, suffix = "", duration = 1200 }: { value
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    let start = 0;
+    const start = 0;
     let frame = 0;
     const startedAt = performance.now();
 

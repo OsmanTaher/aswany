@@ -20,7 +20,7 @@ export const labs : Lab[] = [
     description: "An interactive learning hub designed to explore and practice Next.js 13 features with hands-on examples.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
     liveUrl: "#",
-    // githubUrl: "#"
+    githubUrl: "#"
   },
   {
     slug: "ecommerce-hub",
@@ -28,7 +28,7 @@ export const labs : Lab[] = [
     image: "/labs/labs.png",
     description: "A full-featured online storefront with a real-time shopping cart, secure checkout, and product management.",
     stack: ["React", "Next.js", "Redux Toolkit", "Stripe", "Tailwind CSS"],
-    // liveUrl: "#",
+    liveUrl: "#",
     githubUrl: "#"
   },
   {
@@ -37,8 +37,8 @@ export const labs : Lab[] = [
     image: "/labs/labs.png",
     description: "A streamlined task management tool featuring smooth drag-and-drop boards inspired by Trello workflows.",
     stack: ["TypeScript", "React", "Dnd Kit", "Tailwind CSS", "Zustand"],
-    // liveUrl: "#",
-    // githubUrl: "#"
+    liveUrl: "#",
+    githubUrl: "#"
   },
   {
     slug: "dev-pulse-blog",

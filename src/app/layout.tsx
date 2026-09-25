@@ -16,7 +16,6 @@ const displayFont = Bodoni_Moda({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-// ضبط لون شريط المتصفح على الهواتف ليتطابق مع لون خلفية الموقع الكريمية
 export const viewport: Viewport = {
   themeColor: "#FAF9F1",
   width: "device-width",
@@ -24,8 +23,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  // الرابط الأساسي للموقع لضمان عمل روابط السوشيال ميديا والـ SEO بدقة
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://aswany.pro"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://aswany.pro",
+  ),
 
   title: {
     default: "Aswany | Full-Stack Developer",
@@ -49,19 +49,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Aswany", url: "https://aswany.pro" }],
   creator: "Aswany",
 
-  // ربط اللوجو كـ Favicon وأيقونة للمتصفحات والهواتف
   icons: {
     icon: [
-      { url: "/images/logo.png" },
-      { url: "/images/logo.png", type: "image/png" },
+      { url: "/images/logo.webp" },
+      { url: "/images/logo.webp", type: "image/webp" },
     ],
-    shortcut: ["/images/logo.png"],
-    apple: [
-      { url: "/images/logo.png", sizes: "180x180", type: "image/png" },
-    ],
+    shortcut: ["/images/logo.webp"],
+    apple: [{ url: "/images/logo.webp", sizes: "180x180", type: "image/webp" }],
   },
 
-  // كروت السوشيال ميديا (Facebook, LinkedIn, Telegram, WhatsApp)
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -72,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "Aswany Portfolio",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logo.webp",
         width: 512,
         height: 512,
         alt: "Aswany Developer Logo",
@@ -80,17 +76,15 @@ export const metadata: Metadata = {
     ],
   },
 
-  // كروت منصة X (Twitter)
   twitter: {
     card: "summary",
     title: "Aswany | Full-Stack Developer",
     description:
       "Full-Stack Developer building scalable web applications with modern technologies.",
-    images: ["/images/logo.png"],
+    images: ["/images/logo.webp"],
     creator: "@aswany",
   },
 
-  // إعدادات محركات البحث للـ Indexing
   robots: {
     index: true,
     follow: true,
