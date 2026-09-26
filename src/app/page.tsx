@@ -1,5 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
@@ -12,7 +10,6 @@ import Contact from "@/components/sections/Contact";
 export default function HomePage() {
   return (
     <main className="site-shell">
-      <Navbar />
       <Hero />
       <About />
       <Services />
@@ -21,7 +18,6 @@ export default function HomePage() {
       <Projects />
       <Education />
       <Contact />
-      <Footer />
     </main>
   );
 }

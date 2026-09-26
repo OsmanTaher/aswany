@@ -1,20 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, DM_Sans } from "next/font/google";
+import { Playfair_Display, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import "./globals.css";
-import SmoothScroll from "@/components/layout/SmoothScroll";
 
-const bodyFont = DM_Sans({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
+  variable: "--font-serif",
 });
 
-const displayFont = Bodoni_Moda({
+const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-mono",
 });
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
 
 export const viewport: Viewport = {
   themeColor: "#FAF9F1",
@@ -100,15 +104,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html
-      lang="en"
-      className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth`}
-      suppressHydrationWarning
-    >
-      <body className="bg-[#FAF9F1] text-[#141414] antialiased selection:bg-[#E03D46] selection:text-white">
-        <SmoothScroll>{children}</SmoothScroll>
+    <html lang="en" className={`${playfair.variable} ${jetbrains.variable} ${jakarta.variable}`}>
+      <body className="bg-[#FAF9F1] text-[#141414] antialiased selection:bg-[#CA484A] selection:text-white">
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

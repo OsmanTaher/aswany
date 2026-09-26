@@ -220,7 +220,7 @@ export default function Navbar() {
                 className="flex items-center gap-4 text-2xl font-serif font-black text-[#E03D46] pt-2"
               >
                 <LayoutGrid size={22} strokeWidth={2.2} />
-                <span>All Projects Page</span>
+                <span>LABS</span>
               </Link>
             </nav>
             <div className="border-b-2 border-[#141414] mt-6" />
