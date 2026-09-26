@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import SafeImage from "@/components/ui/SafeImage";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 import { labs, type Lab } from "@/data/labs";
@@ -92,8 +90,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF9F1] text-[#141414] flex flex-col justify-between">
-      <Navbar />
-
       <main className="flex-1 py-12 sm:py-16 lg:py-20">
         <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-10">
           <div className="mb-8">
@@ -215,8 +211,6 @@ export default function ProjectsPage() {
           )}
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

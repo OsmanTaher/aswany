@@ -57,7 +57,6 @@ interface ProjectDetailViewProps {
 }
 
 export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
-  
   const galleryScreens: string[] =
     project.gallery && project.gallery.length > 0
       ? project.gallery
@@ -80,7 +79,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const projectYear = project.year || "2026";
   const projectLiveUrl = project.liveUrl || "#";
 
-  
   const nextLightboxImage = useCallback(() => {
     setLightboxIndex((prev) => (prev + 1) % galleryScreens.length);
   }, [galleryScreens.length]);
@@ -96,7 +94,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
     setLightboxOpen(true);
   };
 
-  
   useEffect(() => {
     if (!lightboxOpen) return;
 
@@ -116,10 +113,8 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
 
   return (
     <div className="bg-[#FAF9F1]">
-      
       <section className="pt-8 pb-16 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          
           <div className="mb-8">
             <Link
               href="/#projects"
@@ -131,12 +126,9 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            
             <div className="lg:col-span-7">
               <Reveal>
-                
                 <div className="relative bg-[#141414] rounded-2xl p-3 sm:p-4 border-2 border-[#141414] shadow-[6px_6px_0px_#141414]">
-                  
                   <div className="flex items-center justify-between px-2 py-1 mb-3">
                     <div className="flex items-center gap-1.5">
                       <span className="w-3 h-3 rounded-full bg-[#EF4444] inline-block" />
@@ -152,7 +144,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                     <div className="w-12 h-1.5 rounded-full bg-neutral-700/50 hidden sm:block" />
                   </div>
 
-                  
                   <div className="relative aspect-16/10 w-full overflow-hidden rounded-lg bg-neutral-950 border border-neutral-800">
                     <SafeImage
                       src={project.image}
@@ -165,10 +156,9 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                
                 <div className="mt-6">
                   <div
-                    className="flex items-center gap-4 overflow-x-auto pb-4 pt-1 px-1 scroll-smooth
+                    className="flex items-center gap-4 overflow-x-auto pb-4 pt-1 px-1
                                scrollbar-auto [scrollbar-color:#141414_#EAE7DF]
                                [&::-webkit-scrollbar]:h-5
                                [&::-webkit-scrollbar-track]:bg-[#EAE7DF]
@@ -200,10 +190,8 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
               </Reveal>
             </div>
 
-            
             <div className="lg:col-span-5 flex flex-col justify-center">
               <Reveal delay={0.08}>
-                
                 <div className="flex items-center gap-2.5 mb-5">
                   <div className="bg-[#E03D46] border-2 border-[#141414] px-3 py-1 flex items-center justify-center">
                     <span className="font-mono font-black text-xs text-white tracking-wider leading-none">
@@ -224,20 +212,16 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black text-[#141414] tracking-tight leading-tight mb-4">
                   {project.title}
                 </h1>
 
-                
                 <div className="w-full border-b border-[#141414]/15 my-4" />
 
-                
                 <p className="text-[#6B6A65] text-sm sm:text-base leading-relaxed mb-6 font-normal">
                   {project.description}
                 </p>
 
-                
                 <div className="mb-6">
                   <span className="block text-[11px] font-mono font-bold tracking-[0.16em] text-[#8F836B] uppercase mb-3">
                     TECHNOLOGIES
@@ -254,7 +238,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                
                 <div className="mb-8">
                   <span className="block text-[11px] font-mono font-bold tracking-[0.16em] text-[#8F836B] uppercase mb-2">
                     PROJECT YEAR
@@ -264,7 +247,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   </div>
                 </div>
 
-                
                 <a
                   href={projectLiveUrl}
                   target="_blank"
@@ -280,7 +262,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex items-center gap-3.5 mb-14">
@@ -322,7 +303,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex items-center justify-between flex-wrap gap-4 mb-14">
@@ -366,9 +346,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      
       <section className="relative bg-[#E03D46] py-24 sm:py-32 overflow-hidden text-center text-white">
-        
         <div className="absolute -top-10 -left-10 w-48 h-48 border-2 border-white/20 rotate-[-15deg] pointer-events-none" />
         <div className="absolute -bottom-14 -right-10 w-64 h-64 border-2 border-white/20 rotate-12 pointer-events-none" />
 
@@ -385,7 +363,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             </p>
           </Reveal>
 
-          
           <Reveal delay={0.16}>
             <Link
               href="/#contact"
@@ -404,13 +381,11 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </div>
       </section>
 
-      
       {lightboxOpen && (
         <div
           onClick={() => setLightboxOpen(false)}
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
         >
-          
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -423,7 +398,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <X size={24} />
           </button>
 
-          
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -436,7 +410,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <ChevronLeft size={26} />
           </button>
 
-          
           <div
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-5xl aspect-16/10 bg-neutral-950 rounded-xl overflow-hidden border border-neutral-800 shadow-2xl"
@@ -449,7 +422,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             />
           </div>
 
-          
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -462,7 +434,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <ChevronRight size={26} />
           </button>
 
-          
           <div
             onClick={(e) => e.stopPropagation()}
             className="mt-5 flex items-center gap-2 max-w-md overflow-x-auto px-4 py-2"

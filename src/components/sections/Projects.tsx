@@ -106,7 +106,7 @@ export default function Projects() {
             </span>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal delay={1}>
             <h2 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-black text-[#141414] tracking-tight mb-3">
               Projects
             </h2>

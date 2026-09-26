@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import ProjectDetailView from "@/components/sections/ProjectDetailView";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -22,11 +21,9 @@ export default async function ProjectDetailPage({
 
   return (
     <div className="min-h-screen bg-[#FAF9F1] text-[#141414]">
-      <Navbar />
       <main>
         <ProjectDetailView project={project} />
       </main>
-      <Footer />
     </div>
   );
 }

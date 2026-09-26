@@ -59,7 +59,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="/projects"
+                href="/labs"
                 className="inline-flex items-center justify-center gap-3 border-2 border-[#141414] bg-[#FAF9F1] px-7 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-black uppercase tracking-[0.14em] text-[#141414] shadow-[3px_3px_0px_#141414] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer"
               >
                 <LayoutGrid

@@ -15,9 +15,6 @@ export default function Education() {
             <span className="inline-block px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-widest bg-[#FAF9F1] text-[#141414] border-2 border-[#141414] shadow-[2px_2px_0px_#141414] mb-4">
               BACKGROUND
             </span>
-          </Reveal>
-
-          <Reveal delay={0.08}>
             <h2 className="font-serif text-5xl sm:text-6xl font-black text-[#141414] tracking-tight">
               Education
             </h2>

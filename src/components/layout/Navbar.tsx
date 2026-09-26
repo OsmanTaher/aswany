@@ -127,7 +127,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3.5 xl:gap-5 md:flex">
           <Link
-            href="/projects"
+            href="/labs"
             className="inline-flex items-center gap-2 border-2 border-[#141414] bg-[#FAF9F1] px-5 py-2.5 xl:px-6 xl:py-3 text-[11px] xl:text-[13px] font-black uppercase tracking-[0.12em] text-[#141414] shadow-[3.5px_3.5px_0_#141414] xl:shadow-[4.5px_4.5px_0_#141414] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5.5px_5.5px_0_#141414] active:translate-x-1 active:translate-y-1 active:shadow-none"
           >
             <LayoutGrid
@@ -215,7 +215,7 @@ export default function Navbar() {
               ))}
 
               <Link
-                href="/projects"
+                href="/labs"
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-4 text-2xl font-serif font-black text-[#E03D46] pt-2"
               >

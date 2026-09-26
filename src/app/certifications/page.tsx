@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import SafeImage from "@/components/ui/SafeImage";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { ArrowLeft, Calendar, ExternalLink, Trophy } from "lucide-react";
 import { motion } from "motion/react";
 import { certifications, type Certification } from "@/data/certifications";
@@ -62,8 +60,6 @@ export default function CertificationsPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF9F1] text-[#141414] flex flex-col justify-between">
-      <Navbar />
-
       <main className="flex-1 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="mb-8">
@@ -178,8 +174,6 @@ export default function CertificationsPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
