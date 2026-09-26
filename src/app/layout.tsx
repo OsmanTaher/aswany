@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://aswany.pro",
+    process.env.NEXT_PUBLIC_SITE_URL || "https://aswany.me",
   ),
 
   title: {
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     "Node.js",
     "Portfolio",
   ],
-  authors: [{ name: "Aswany", url: "https://aswany.pro" }],
+  authors: [{ name: "Aswany", url: "https://aswany.me" }],
   creator: "Aswany",
 
   icons: {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://aswany.pro",
+    url: "https://aswany.me",
     title: "Aswany | Full-Stack Developer",
     description:
       "Building scalable web applications with modern technologies. Turning ideas into fast, high-performance web solutions.",

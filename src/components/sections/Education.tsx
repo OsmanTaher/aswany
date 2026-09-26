@@ -39,7 +39,7 @@ export default function Education() {
               </div>
 
               <div className="flex-1">
-                <div className="inline-block bg-[#92ffdb] text-[#141414] border border-[#141414] px-3 py-0.5 text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
+                <div className="inline-block bg-[#92ffdb] text-[#141414] border border-[#141414] px-3 py-0.5 text-[11px] font-mono font-extrabold uppercase tracking-wider mb-3">
                   SENIOR YEAR
                 </div>
 

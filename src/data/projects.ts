@@ -187,7 +187,7 @@ export const projects: Project[] = [
   {
     slug: "sharyan",
     title: "Sharyan",
-    image: "/projects/sharyan.png",
+    image: "/projects/sharyan/1.webp",
     category: "HEALTHCARE / BLOOD DONATION",
     accent: "red",
     shortDescription:

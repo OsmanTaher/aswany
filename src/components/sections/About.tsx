@@ -35,7 +35,7 @@ export default function About() {
 
           <div className="lg:col-span-7">
             <Reveal delay={0.08}>
-              <div className="inline-block border-[3px] border-[#343630] bg-[#FAF9F1] px-4 py-2 mb-10 text-[15px] font-mono font-bold text-[#343630] uppercase">
+              <div className="inline-block border-[3px] border-[#343630] bg-[#FAF9F1] px-4 py-2 mb-5 text-[15px] font-mono font-bold text-[#343630] uppercase">
                 ABOUT
               </div>
 
