@@ -10,6 +10,8 @@ export type Project = {
   liveUrl?: string;
   features: string[];
   gallery: string[];
+  year?: string;
+  number?: string;
 };
 
 export const projects: Project[] = [

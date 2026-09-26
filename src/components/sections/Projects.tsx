@@ -60,7 +60,7 @@ function TechIcon({ name }: { name: string }) {
 
 function DeviceMonitor({ image, title }: { image: string; title: string }) {
   return (
-    <div className="relative w-full max-w-[500px] mx-auto">
+    <div className="relative w-full max-w-125 mx-auto">
       <div className="relative bg-[#141414] rounded-2xl p-2.5 sm:p-3 border-2 border-[#141414] shadow-md">
         <div className="flex items-center justify-between px-2 py-1 mb-2">
           <div className="flex items-center gap-1.5">
@@ -69,14 +69,14 @@ function DeviceMonitor({ image, title }: { image: string; title: string }) {
             <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] inline-block" />
           </div>
 
-          <span className="text-[11px] font-mono font-medium text-neutral-400 truncate max-w-[170px] sm:max-w-[240px]">
+          <span className="text-[11px] font-mono font-medium text-neutral-400 truncate max-w-42.5 sm:max-w-60">
             {title}
           </span>
 
           <div className="w-12 h-1.5 rounded-full bg-neutral-700/60 hidden sm:block" />
         </div>
 
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-neutral-900 border border-neutral-800">
+        <div className="relative aspect-16/10 w-full overflow-hidden rounded-lg bg-neutral-900 border border-neutral-800">
           <SafeImage
             src={image}
             alt={title}
@@ -197,18 +197,18 @@ export default function Projects() {
                       <div className="grid grid-cols-2 gap-3 sm:flex sm:items-center sm:gap-4">
                         <Link
                           href={`/projects/${project.slug}`}
-                          className="inline-flex items-center justify-center gap-2 border-2 border-[#141414] bg-[#141414] px-5 py-3 !text-white text-xs font-mono font-bold tracking-wider uppercase
+                          className="inline-flex items-center justify-center gap-2 border-2 border-[#141414] bg-[#141414] px-5 py-3 text-white! text-xs font-mono font-bold tracking-wider uppercase
                                      shadow-[3px_3px_0px_#141414] transition-all duration-200
                                      hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#141414]
                                      active:translate-x-1 active:translate-y-1 active:shadow-none cursor-pointer"
                         >
-                          <span className="!text-white font-mono font-bold tracking-wider">
+                          <span className="text-white! font-mono font-bold tracking-wider">
                             VIEW PROJECT
                           </span>
                           <ArrowRight
                             size={14}
                             strokeWidth={2.4}
-                            className="!text-white shrink-0"
+                            className="text-white! shrink-0"
                           />
                         </Link>
 
